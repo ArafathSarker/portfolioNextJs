@@ -31,6 +31,7 @@ export const skills = [
   { name: "CSS", level: 85 },
   { name: "JavaScript", level: 80 },
   { name: "React", level: 85 },
+  { name: "Next.js", level: 82 },
   { name: "Node.js", level: 80 },
   { name: "Express.js", level: 78 },
   { name: "MongoDB", level: 75 },
@@ -84,6 +85,16 @@ export const achievements = [
       "Awarded 2nd place among 20 teams in an intra-university programming contest focused on algorithmic problem-solving, data structures, and competitive coding.",
     image: "/images/achievements/award.jpeg",
     logo: "/images/achievements/uulogo.jpeg",
+    placement: "2nd Place",
+  },
+  {
+    title: "Dean's Honor Award",
+    issuer: "Uttara University",
+    date: "2025",
+    description:
+      "Recognized with the Dean's Honor Award for outstanding academic performance and excellence in the field of Computer Science and Engineering.",
+    image: "/images/achievements/deansAward.jpeg",
+    logo: "/images/achievements/uulogo.jpeg",
   },
 ];
 
@@ -102,5 +113,10 @@ export const certificates = [
     title: "Business Case Study of National Innovation Competition 2024",
     issuer: "IUBAT",
     image: "/images/certificates/cert3.png",
+  },
+  {
+    title: "Dean's Honor Award",
+    issuer: "UTTARA UNIVERSITY",
+    image: "/images/certificates/deansCertificate.jpeg",
   },
 ];

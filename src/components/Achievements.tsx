@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { achievements } from "@/data";
-import { Award, Trophy, Users, Calendar } from "lucide-react";
+import { Award, Trophy, Calendar } from "lucide-react";
 
 export default function Achievements() {
   return (
@@ -106,15 +106,17 @@ export default function Achievements() {
                       </div>
 
                       {/* Badge */}
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        whileInView={{ scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3, type: "spring" }}
-                        className="px-4 py-2 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-500/30 rounded-full text-sm font-semibold text-emerald-400 backdrop-blur-sm"
-                      >
-                        2nd Place
-                      </motion.div>
+                      {achievement.placement && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          whileInView={{ scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.3, type: "spring" }}
+                          className="px-4 py-2 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-500/30 rounded-full text-sm font-semibold text-emerald-400 backdrop-blur-sm"
+                        >
+                          {achievement.placement}
+                        </motion.div>
+                      )}
                     </div>
                     
                     <p className="text-slate-300 leading-relaxed mb-6">
@@ -123,10 +125,6 @@ export default function Achievements() {
 
                     {/* Stats */}
                     <div className="flex flex-wrap gap-6 pt-4 border-t border-slate-700/50">
-                      <div className="flex items-center gap-2">
-                        <Users className="w-5 h-5 text-emerald-400" />
-                        <span className="text-slate-400 text-sm">20 Teams Competed</span>
-                      </div>
                       <div className="flex items-center gap-2">
                         <Trophy className="w-5 h-5 text-cyan-400" />
                         <span className="text-slate-400 text-sm">Silver Medal</span>

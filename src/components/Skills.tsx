@@ -112,23 +112,22 @@ function SkillCard({ skill, index }: { skill: typeof skills[0]; index: number })
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 relative overflow-hidden">
+    <section id="skills" className="py-24 relative overflow-hidden min-h-screen flex items-center">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900" />
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10" />
       
       {/* Gradient Orbs */}
-      <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px]" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[150px]" />
+      <div className="absolute top-1/3 left-1/4 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-emerald-500/10 rounded-full blur-[120px]" />
+      <div className="absolute bottom-1/3 right-1/4 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-cyan-500/10 rounded-full blur-[120px]" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 relative z-10 w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
           <motion.div
             initial={{ scale: 0 }}
@@ -153,10 +152,219 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skills.map((skill, index) => (
-            <SkillCard key={skill.name} skill={skill} index={index} />
-          ))}
+        {/* Two Column Layout: Skills Left, Cloud Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 max-w-7xl mx-auto items-center">
+          
+          {/* Left: Skills Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+            {skills.map((skill, index) => (
+              <SkillCard key={skill.name} skill={skill} index={index} />
+            ))}
+          </div>
+
+          {/* Right: Thunder Cloud - Enhanced */}
+          <div className="relative flex items-center justify-center min-h-[500px] lg:min-h-[600px]">
+            {/* Rotating Outer Ring */}
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-0 w-72 h-72 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            >
+              <div className="absolute inset-0 rounded-full border-2 border-dashed border-emerald-500/20" />
+            </motion.div>
+
+            {/* Counter-rotating Inner Ring */}
+            <motion.div
+              animate={{ rotate: -360 }}
+              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-0 w-60 h-60 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[26rem] lg:h-[26rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            >
+              <div className="absolute inset-0 rounded-full border border-cyan-500/20" />
+            </motion.div>
+
+            {/* Pulsing Glow Background */}
+            <motion.div
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.5, 0.3]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] bg-gradient-to-r from-emerald-500/20 via-cyan-500/20 to-blue-500/20 rounded-full blur-3xl"
+            />
+
+            {/* Floating Particles */}
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={i}
+                animate={{
+                  y: [0, -40, 0],
+                  x: [0, Math.sin(i) * 20, 0],
+                  opacity: [0.3, 1, 0.3],
+                  scale: [0.8, 1.2, 0.8]
+                }}
+                transition={{
+                  duration: 4 + i * 0.3,
+                  repeat: Infinity,
+                  delay: i * 0.4,
+                  ease: "easeInOut"
+                }}
+                className="absolute w-2 h-2 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full shadow-lg shadow-emerald-500/50"
+                style={{
+                  top: `${50 + Math.sin((i * Math.PI) / 4) * 35}%`,
+                  left: `${50 + Math.cos((i * Math.PI) / 4) * 35}%`,
+                }}
+              />
+            ))}
+
+            {/* Main Thunder Cloud SVG */}
+            <motion.div
+              animate={{
+                y: [0, -15, 0],
+                scale: [1, 1.05, 1]
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <svg
+                viewBox="0 0 300 300"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] drop-shadow-2xl"
+              >
+                <defs>
+                  <linearGradient id="cloudGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#10b981" stopOpacity="0.8" />
+                    <stop offset="50%" stopColor="#06b6d4" stopOpacity="0.9" />
+                    <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.8" />
+                  </linearGradient>
+                  <linearGradient id="thunderGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#fbbf24" />
+                    <stop offset="50%" stopColor="#f59e0b" />
+                    <stop offset="100%" stopColor="#fbbf24" />
+                  </linearGradient>
+                  <filter id="cloudGlow">
+                    <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                    <feMerge>
+                      <feMergeNode in="coloredBlur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                  <filter id="strongGlow">
+                    <feGaussianBlur stdDeviation="12" result="coloredBlur"/>
+                    <feColorMatrix in="coloredBlur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 2 0"/>
+                    <feMerge>
+                      <feMergeNode/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                {/* Enhanced Cloud Shape with more morphing */}
+                <motion.path
+                  animate={{
+                    d: [
+                      "M150,80 C140,80 130,85 125,95 C115,92 105,95 100,105 C90,105 82,113 82,123 C82,133 90,141 100,141 L200,141 C210,141 218,133 218,123 C218,115 213,108 206,105 C206,95 198,87 188,87 C183,87 178,89 175,92 C170,85 161,80 150,80 Z",
+                      "M150,75 C138,75 128,82 123,93 C113,90 103,93 98,103 C88,103 80,111 80,121 C80,131 88,139 98,139 L202,139 C212,139 220,131 220,121 C220,113 215,106 208,103 C208,93 200,85 190,85 C185,85 180,87 177,90 C172,82 163,75 150,75 Z",
+                      "M150,82 C142,82 132,87 127,97 C117,94 107,97 102,107 C92,107 84,115 84,125 C84,135 92,143 102,143 L198,143 C208,143 216,135 216,125 C216,117 211,110 204,107 C204,97 196,89 186,89 C181,89 176,91 173,94 C168,87 159,82 150,82 Z",
+                      "M150,80 C140,80 130,85 125,95 C115,92 105,95 100,105 C90,105 82,113 82,123 C82,133 90,141 100,141 L200,141 C210,141 218,133 218,123 C218,115 213,108 206,105 C206,95 198,87 188,87 C183,87 178,89 175,92 C170,85 161,80 150,80 Z"
+                    ],
+                    scale: [1, 1.03, 0.98, 1],
+                    y: [0, -3, 2, 0]
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  fill="url(#cloudGradient)"
+                  filter="url(#cloudGlow)"
+                  opacity="0.9"
+                />
+
+                {/* Animated Thunder Bolts with Enhanced Effects */}
+                {/* Thunder Bolt 1 - Left */}
+                <motion.path
+                  d="M110,145 L105,165 L112,165 L108,185 L118,160 L113,160 L118,145 Z"
+                  fill="url(#thunderGradient)"
+                  animate={{
+                    opacity: [0, 0.3, 1, 1, 0],
+                    scaleY: [0.5, 0.8, 1, 1, 0.5],
+                    filter: ["url(#cloudGlow)", "url(#strongGlow)", "url(#strongGlow)", "url(#cloudGlow)"]
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    repeatDelay: 1.5,
+                    ease: "easeInOut"
+                  }}
+                />
+
+                {/* Thunder Bolt 2 - Right */}
+                <motion.path
+                  d="M190,145 L185,165 L192,165 L188,185 L198,160 L193,160 L198,145 Z"
+                  fill="url(#thunderGradient)"
+                  animate={{
+                    opacity: [0, 0.3, 1, 1, 0],
+                    scaleY: [0.5, 0.8, 1, 1, 0.5],
+                    filter: ["url(#cloudGlow)", "url(#strongGlow)", "url(#strongGlow)", "url(#cloudGlow)"]
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    repeatDelay: 2,
+                    delay: 0.6,
+                    ease: "easeInOut"
+                  }}
+                />
+
+                {/* Thunder Bolt 3 - Center */}
+                <motion.path
+                  d="M150,145 L147,160 L152,160 L149,175 L156,155 L152,155 L155,145 Z"
+                  fill="url(#thunderGradient)"
+                  animate={{
+                    opacity: [0, 0.3, 1, 1, 0],
+                    scaleY: [0.5, 0.8, 1, 1, 0.5],
+                    filter: ["url(#cloudGlow)", "url(#strongGlow)", "url(#strongGlow)", "url(#cloudGlow)"]
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    repeatDelay: 2.5,
+                    delay: 1.2,
+                    ease: "easeInOut"
+                  }}
+                />
+
+                {/* Enhanced Cloud Outline with shimmer */}
+                <motion.path
+                  animate={{
+                    d: [
+                      "M150,80 C140,80 130,85 125,95 C115,92 105,95 100,105 C90,105 82,113 82,123 C82,133 90,141 100,141 L200,141 C210,141 218,133 218,123 C218,115 213,108 206,105 C206,95 198,87 188,87 C183,87 178,89 175,92 C170,85 161,80 150,80 Z",
+                      "M150,75 C138,75 128,82 123,93 C113,90 103,93 98,103 C88,103 80,111 80,121 C80,131 88,139 98,139 L202,139 C212,139 220,131 220,121 C220,113 215,106 208,103 C208,93 200,85 190,85 C185,85 180,87 177,90 C172,82 163,75 150,75 Z",
+                      "M150,82 C142,82 132,87 127,97 C117,94 107,97 102,107 C92,107 84,115 84,125 C84,135 92,143 102,143 L198,143 C208,143 216,135 216,125 C216,117 211,110 204,107 C204,97 196,89 186,89 C181,89 176,91 173,94 C168,87 159,82 150,82 Z",
+                      "M150,80 C140,80 130,85 125,95 C115,92 105,95 100,105 C90,105 82,113 82,123 C82,133 90,141 100,141 L200,141 C210,141 218,133 218,123 C218,115 213,108 206,105 C206,95 198,87 188,87 C183,87 178,89 175,92 C170,85 161,80 150,80 Z"
+                    ],
+                    strokeOpacity: [0.5, 0.8, 0.6, 0.5]
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  fill="none"
+                  stroke="url(#cloudGradient)"
+                  strokeWidth="3"
+                  filter="url(#cloudGlow)"
+                />
+              </svg>
+            </motion.div>
+          </div>
         </div>
 
         {/* Stats Section */}
@@ -165,7 +373,7 @@ export default function Skills() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6"
+          className="mt-32 grid grid-cols-2 md:grid-cols-4 gap-6"
         >
           {[
             { label: "Technologies", value: "13+" },
