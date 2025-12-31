@@ -162,76 +162,23 @@ export default function Skills() {
             ))}
           </div>
 
-          {/* Right: Thunder Cloud - Enhanced */}
+          {/* Right: Thunder Cloud - Optimized */}
           <div className="relative flex items-center justify-center min-h-[500px] lg:min-h-[600px]">
-            {/* Rotating Outer Ring */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-0 w-72 h-72 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-            >
+            {/* Static Outer Ring */}
+            <div className="absolute inset-0 w-72 h-72 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30">
               <div className="absolute inset-0 rounded-full border-2 border-dashed border-emerald-500/20" />
-            </motion.div>
+            </div>
 
-            {/* Counter-rotating Inner Ring */}
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-0 w-60 h-60 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[26rem] lg:h-[26rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-            >
+            {/* Static Inner Ring */}
+            <div className="absolute inset-0 w-60 h-60 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[26rem] lg:h-[26rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-40">
               <div className="absolute inset-0 rounded-full border border-cyan-500/20" />
-            </motion.div>
+            </div>
 
-            {/* Pulsing Glow Background */}
-            <motion.div
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.5, 0.3]
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] bg-gradient-to-r from-emerald-500/20 via-cyan-500/20 to-blue-500/20 rounded-full blur-3xl"
-            />
+            {/* Pulsing Glow Background - Reduced */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] bg-gradient-to-r from-emerald-500/20 via-cyan-500/20 to-blue-500/20 rounded-full blur-3xl opacity-50" />
 
-            {/* Floating Particles */}
-            {[...Array(8)].map((_, i) => (
-              <motion.div
-                key={i}
-                animate={{
-                  y: [0, -40, 0],
-                  x: [0, Math.sin(i) * 20, 0],
-                  opacity: [0.3, 1, 0.3],
-                  scale: [0.8, 1.2, 0.8]
-                }}
-                transition={{
-                  duration: 4 + i * 0.3,
-                  repeat: Infinity,
-                  delay: i * 0.4,
-                  ease: "easeInOut"
-                }}
-                className="absolute w-2 h-2 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full shadow-lg shadow-emerald-500/50"
-                style={{
-                  top: `${50 + Math.sin((i * Math.PI) / 4) * 35}%`,
-                  left: `${50 + Math.cos((i * Math.PI) / 4) * 35}%`,
-                }}
-              />
-            ))}
-
-            {/* Main Thunder Cloud SVG */}
-            <motion.div
-              animate={{
-                y: [0, -15, 0],
-                scale: [1, 1.05, 1]
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
+            {/* Main Thunder Cloud SVG - Simplified */}
+            <div className="will-change-transform">
               <svg
                 viewBox="0 0 300 300"
                 xmlns="http://www.w3.org/2000/svg"
@@ -363,7 +310,7 @@ export default function Skills() {
                   filter="url(#cloudGlow)"
                 />
               </svg>
-            </motion.div>
+            </div>
           </div>
         </div>
 

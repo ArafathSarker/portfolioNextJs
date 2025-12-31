@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { achievements } from "@/data";
 import { Award, Trophy, Calendar } from "lucide-react";
+import Image from "next/image";
 
 export default function Achievements() {
   return (
@@ -66,11 +67,14 @@ export default function Achievements() {
                   className="relative flex-shrink-0"
                 >
                   <div className="w-16 h-16 md:w-24 md:h-24 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-500 p-0.5 shadow-xl shadow-emerald-500/20">
-                    <div className="w-full h-full bg-slate-900 rounded-2xl flex items-center justify-center">
-                      <img
+                    <div className="w-full h-full bg-slate-900 rounded-2xl flex items-center justify-center relative overflow-hidden">
+                      <Image
                         src={achievement.logo}
                         alt={achievement.issuer}
-                        className="w-12 h-12 md:w-16 md:h-16 object-contain rounded-lg"
+                        width={64}
+                        height={64}
+                        className="object-contain rounded-lg"
+                        loading="lazy"
                       />
                     </div>
                   </div>
@@ -139,14 +143,16 @@ export default function Achievements() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 }}
-                  whileHover={{ scale: 1.05, rotateY: 5 }}
-                  className="flex-shrink-0 w-full md:w-64 h-48 rounded-2xl overflow-hidden border-2 border-slate-700 hover:border-emerald-500/50 transition-all shadow-xl"
-                  style={{ transformStyle: "preserve-3d" }}
+                  whileHover={{ scale: 1.05 }}
+                  className="flex-shrink-0 w-full md:w-64 h-48 rounded-2xl overflow-hidden border-2 border-slate-700 hover:border-emerald-500/50 transition-all shadow-xl relative"
                 >
-                  <img
+                  <Image
                     src={achievement.image}
                     alt="Award"
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 256px"
+                    className="object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent" />
                 </motion.div>

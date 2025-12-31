@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { projects } from "@/data";
 import { ArrowLeft, ExternalLink, Github, Play, Code2, Sparkles, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { useState, use } from "react";
 
@@ -34,6 +35,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
         >
           <Link
             href="/#projects"
+            aria-label="Back to all projects"
             className="inline-flex items-center gap-2 text-slate-400 hover:text-emerald-400 transition-colors mb-12 group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
@@ -77,6 +79,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
                 href={project.liveDemo}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`View live demo of ${project.title}`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-xl font-semibold text-white shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all"
@@ -91,6 +94,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`View ${project.title} source code on GitHub`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-slate-800 border border-slate-700 rounded-xl font-semibold text-white hover:border-emerald-500/50 transition-all"
@@ -105,6 +109,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
                 href={project.frontendCode}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`View ${project.title} frontend code on GitHub`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-slate-800 border border-slate-700 rounded-xl font-semibold text-white hover:border-emerald-500/50 transition-all"
@@ -119,6 +124,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
                 href={project.backendCode}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`View ${project.title} backend code on GitHub`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-slate-800 border border-slate-700 rounded-xl font-semibold text-white hover:border-emerald-500/50 transition-all"
@@ -174,13 +180,16 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.4 + index * 0.1 }}
                       whileHover={{ scale: 1.03 }}
-                      className="relative group cursor-pointer rounded-xl overflow-hidden border-2 border-slate-700 hover:border-emerald-500/50 transition-all shadow-xl"
+                      className="relative group cursor-pointer rounded-xl overflow-hidden border-2 border-slate-700 hover:border-emerald-500/50 transition-all shadow-xl h-64"
                       onClick={() => setSelectedImage(image)}
                     >
-                      <img
+                      <Image
                         src={image}
                         alt={`${project.title} screenshot ${index + 1}`}
-                        className="w-full h-64 object-cover"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover"
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                         <span className="text-white font-medium flex items-center gap-2">
@@ -321,11 +330,17 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
             </button>
             
             <div className="bg-slate-900 rounded-2xl overflow-hidden border border-slate-700 shadow-2xl">
-              <img
-                src={selectedImage}
-                alt="Full size screenshot"
-                className="w-full h-auto object-contain max-h-[80vh]"
-              />
+              <div className="relative w-full" style={{ minHeight: '400px' }}>
+                <Image
+                  src={selectedImage}
+                  alt="Full size screenshot"
+                  width={1920}
+                  height={1080}
+                  className="w-full h-auto object-contain"
+                  style={{ maxHeight: '80vh' }}
+                  priority
+                />
+              </div>
             </div>
           </motion.div>
         </motion.div>

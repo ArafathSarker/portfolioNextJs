@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { certificates } from "@/data";
 import { Award, X, ZoomIn } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 
 export default function Certificates() {
@@ -62,10 +63,13 @@ export default function Certificates() {
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-emerald-500/0 to-emerald-500/0 group-hover:from-emerald-500/10 group-hover:via-cyan-500/5 group-hover:to-transparent transition-all duration-500" />
 
               <div className="aspect-video overflow-hidden bg-slate-800 relative">
-                <img
+                <Image
                   src={cert.image}
                   alt={cert.title}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover transform group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
                 
@@ -143,12 +147,18 @@ export default function Certificates() {
                 <X className="w-6 h-6 text-white" />
               </button>
               
-              <div className="bg-slate-900 rounded-2xl overflow-hidden border border-slate-700 shadow-2xl">
-                <img
-                  src={selectedCert.image}
-                  alt={selectedCert.title}
-                  className="w-full h-auto object-contain max-h-[70vh]"
-                />
+              <div className="bg-slate-900 rounded-2xl overflow-hidden border border-slate-700 shadow-2xl relative">
+                <div className="relative w-full" style={{ minHeight: '400px' }}>
+                  <Image
+                    src={selectedCert.image}
+                    alt={selectedCert.title}
+                    width={1200}
+                    height={800}
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: '70vh' }}
+                    priority
+                  />
+                </div>
                 <div className="p-6 border-t border-slate-700">
                   <h3 className="text-2xl font-bold text-white mb-2">{selectedCert.title}</h3>
                   <p className="text-slate-400">Issued by <span className="text-emerald-400 font-medium">{selectedCert.issuer}</span></p>

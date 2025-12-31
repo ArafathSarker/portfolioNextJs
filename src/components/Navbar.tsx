@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sparkles } from "lucide-react";
 
@@ -51,10 +52,10 @@ export default function Navbar() {
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-3 group relative">
+        <Link href="/" aria-label="Home - Portfolio" className="flex items-center gap-3 group relative">
           <div className="relative w-12 h-12 overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-400 to-cyan-500 p-0.5 transform group-hover:scale-110 transition-transform duration-300">
-            <div className="w-full h-full bg-slate-900 rounded-2xl overflow-hidden">
-              <img src="/images/logo.png" alt="Logo" className="object-cover w-full h-full" />
+            <div className="w-full h-full bg-slate-900 rounded-2xl overflow-hidden relative">
+              <Image src="/images/logo.png" alt="Logo" fill className="object-cover" sizes="48px" priority />
             </div>
           </div>
           <span className="text-2xl font-bold bg-gradient-to-r from-white via-emerald-200 to-emerald-400 bg-clip-text text-transparent group-hover:scale-105 transition-transform">
@@ -93,6 +94,7 @@ export default function Navbar() {
             href="https://www.linkedin.com/in/arafath-sarker/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Connect on LinkedIn"
             className="ml-4 px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white rounded-full font-medium transition-all transform hover:scale-105 hover:shadow-xl hover:shadow-emerald-500/30 relative overflow-hidden group"
           >
             <span className="relative z-10">Let's Talk</span>

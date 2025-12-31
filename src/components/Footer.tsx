@@ -3,6 +3,7 @@
 import { personalInfo } from "@/data";
 import { ArrowUp, Heart } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -28,9 +29,9 @@ export default function Footer() {
             className="md:col-span-2"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-500 p-0.5">
-                <div className="w-full h-full bg-slate-900 rounded-xl flex items-center justify-center">
-                  <img src="/images/logo.png" alt="Logo" className="w-8 h-8 object-cover rounded-lg" />
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-500 p-0.5 relative overflow-hidden">
+                <div className="w-full h-full bg-slate-900 rounded-xl flex items-center justify-center relative">
+                  <Image src="/images/logo.png" alt="Logo" width={32} height={32} className="object-cover rounded-lg" />
                 </div>
               </div>
               <h2 className="text-2xl font-bold bg-gradient-to-r from-white to-emerald-400 bg-clip-text text-transparent">

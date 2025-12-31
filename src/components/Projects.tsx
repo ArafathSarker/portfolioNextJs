@@ -2,8 +2,9 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { projects } from "@/data";
-import { ExternalLink, Github, Eye } from "lucide-react";
+import { ExternalLink, Eye } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
@@ -65,10 +66,13 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           transition={{ duration: 0.6 }}
           className="absolute inset-0"
         >
-          <img
+          <Image
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
         </motion.div>
@@ -101,6 +105,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           >
             <Link
               href={project.link}
+              aria-label={`Open ${project.title} in new page`}
               className="p-3 bg-slate-800/80 backdrop-blur-sm rounded-xl text-slate-400 hover:text-white hover:bg-gradient-to-r hover:from-emerald-500 hover:to-cyan-500 transition-all duration-300 shadow-lg flex items-center justify-center"
             >
               <ExternalLink size={20} />
@@ -134,6 +139,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         >
           <Link
             href={project.link}
+            aria-label={`View details of ${project.title}`}
             className="flex-1 px-4 py-2 bg-slate-800/50 hover:bg-emerald-500 text-slate-300 hover:text-white rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-2"
           >
             <Eye size={16} />

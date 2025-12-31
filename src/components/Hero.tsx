@@ -2,7 +2,9 @@
 
 import { motion } from "framer-motion";
 import { personalInfo } from "@/data";
-import { Download, Github, Linkedin, Mail, Sparkles, Code2, Rocket } from "lucide-react";
+import { Linkedin, Sparkles, Code2, Rocket } from "lucide-react";
+import Image from "next/image";
+import dynamic from "next/dynamic";
 
 export default function Hero() {
   return (
@@ -115,6 +117,7 @@ export default function Hero() {
               href="https://www.linkedin.com/in/arafath-sarker/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Connect with me on LinkedIn"
               className="group px-8 py-3.5 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white rounded-full font-medium transition-all transform hover:scale-105 shadow-xl shadow-emerald-500/25 hover:shadow-2xl hover:shadow-emerald-500/40 relative overflow-hidden"
             >
               <span className="relative z-10 flex items-center gap-2">
@@ -125,6 +128,7 @@ export default function Hero() {
             </a>
             <a
               href="#projects"
+              aria-label="View my work and projects"
               className="px-8 py-3.5 border-2 border-slate-700 hover:border-emerald-500 text-slate-300 hover:text-white rounded-full font-medium transition-all hover:bg-emerald-500/10 backdrop-blur-sm"
             >
               View Work
@@ -143,6 +147,7 @@ export default function Hero() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={social.name}
                 whileHover={{ scale: 1.2, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
                 className="w-12 h-12 rounded-xl bg-slate-800/50 backdrop-blur-sm border border-slate-700 hover:border-emerald-500/50 flex items-center justify-center text-slate-400 hover:text-emerald-400 transition-all hover:bg-slate-800"
@@ -226,15 +231,23 @@ export default function Hero() {
                 />
 
                 {/* Profile image clipped inside the hexagon mask */}
-                <image
-                  href="/images/profile.png"
+                <foreignObject
                   x="25.041"
                   y="10"
                   width="200.918"
                   height="240.564"
-                  preserveAspectRatio="xMidYMax slice"
                   mask="url(#hexMask)"
-                />
+                >
+                  <Image
+                    src="/images/profile.png"
+                    alt="Profile"
+                    width={201}
+                    height={241}
+                    priority
+                    quality={85}
+                    style={{ objectFit: 'cover', objectPosition: 'center top' }}
+                  />
+                </foreignObject>
               </svg>
             </motion.div>
 
