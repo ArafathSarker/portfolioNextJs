@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { achievements } from "@/data";
 import { Award, Trophy, Calendar } from "lucide-react";
 import Image from "next/image";
@@ -17,22 +16,11 @@ export default function Achievements() {
       <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px]" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full mb-6"
-          >
+        <div className="text-center mb-20 animate-fadeInUp">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full mb-6">
             <Trophy className="w-4 h-4 text-emerald-400" />
             <span className="text-sm text-emerald-400 font-medium">Recognition</span>
-          </motion.div>
+          </div>
 
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             Honors &{" "}
@@ -43,17 +31,14 @@ export default function Achievements() {
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
             Recognition and achievements that mark key milestones in my journey.
           </p>
-        </motion.div>
+        </div>
 
         <div className="max-w-5xl mx-auto">
           {achievements.map((achievement, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="relative mb-12 last:mb-0"
+              className="relative mb-12 last:mb-0 animate-fadeInUp"
+              style={{ animationDelay: `${index * 150}ms` }}
             >
               {/* Timeline Line */}
               {index < achievements.length - 1 && (
@@ -62,10 +47,7 @@ export default function Achievements() {
 
               <div className="flex flex-col md:flex-row gap-6 items-start group">
                 {/* Icon */}
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  className="relative flex-shrink-0"
-                >
+                <div className="relative flex-shrink-0 transition-transform duration-300 hover:scale-110 hover:rotate-[5deg]">
                   <div className="w-16 h-16 md:w-24 md:h-24 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-500 p-0.5 shadow-xl shadow-emerald-500/20">
                     <div className="w-full h-full bg-slate-900 rounded-2xl flex items-center justify-center relative overflow-hidden">
                       <Image
@@ -79,21 +61,18 @@ export default function Achievements() {
                     </div>
                   </div>
                   {/* Pulse Effect */}
-                  <span className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-500 opacity-0 group-hover:opacity-20 blur-xl transition-opacity" />
-                </motion.div>
+                  <span className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-500 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300" />
+                </div>
                 
                 {/* Content Card */}
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="flex-grow bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-6 md:p-8 border border-slate-700/50 hover:border-emerald-500/50 transition-all shadow-xl hover:shadow-2xl hover:shadow-emerald-500/10 relative overflow-hidden"
-                >
+                <div className="flex-grow bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-6 md:p-8 border border-slate-700/50 hover:border-emerald-500/50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-emerald-500/10 relative overflow-hidden hover:scale-[1.02]">
                   {/* Background Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   <div className="relative z-10">
                     <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
                       <div className="flex-1">
-                        <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
+                        <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors duration-300">
                           {achievement.title}
                         </h3>
                         
@@ -111,15 +90,9 @@ export default function Achievements() {
 
                       {/* Badge */}
                       {achievement.placement && (
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          whileInView={{ scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.3, type: "spring" }}
-                          className="px-4 py-2 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-500/30 rounded-full text-sm font-semibold text-emerald-400 backdrop-blur-sm"
-                        >
+                        <div className="px-4 py-2 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-500/30 rounded-full text-sm font-semibold text-emerald-400 backdrop-blur-sm">
                           {achievement.placement}
-                        </motion.div>
+                        </div>
                       )}
                     </div>
                     
@@ -135,17 +108,10 @@ export default function Achievements() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Award Image */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  whileHover={{ scale: 1.05 }}
-                  className="flex-shrink-0 w-full md:w-64 h-48 rounded-2xl overflow-hidden border-2 border-slate-700 hover:border-emerald-500/50 transition-all shadow-xl relative"
-                >
+                <div className="flex-shrink-0 w-full md:w-64 h-48 rounded-2xl overflow-hidden border-2 border-slate-700 hover:border-emerald-500/50 transition-all duration-300 shadow-xl relative hover:scale-105">
                   <Image
                     src={achievement.image}
                     alt="Award"
@@ -155,19 +121,14 @@ export default function Achievements() {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent" />
-                </motion.div>
+                </div>
               </div>
 
               {/* Decorative Elements */}
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                className="absolute left-8 md:left-12 top-8 md:top-12 w-4 h-4 bg-emerald-500 rounded-full shadow-lg shadow-emerald-500/50"
-              >
+              <div className="absolute left-8 md:left-12 top-8 md:top-12 w-4 h-4 bg-emerald-500 rounded-full shadow-lg shadow-emerald-500/50">
                 <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-75" />
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           ))}
         </div>
       </div>

@@ -1,25 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { projects } from "@/data";
 import { ExternalLink, Eye } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
 
 function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.5, delay: index * 0.2 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      whileHover={{ y: -10 }}
-      className="group relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-emerald-500/50 transition-all duration-500 shadow-lg hover:shadow-emerald-500/10"
+    <div
+      className="group relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-emerald-500/50 transition-all duration-300 shadow-lg hover:shadow-emerald-500/10 hover:-translate-y-2 animate-fadeInUp"
+      style={{ animationDelay: `${index * 100}ms` }}
     >
       {/* Animated Gradient Overlay */}
       <div
@@ -30,11 +20,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       />
 
       <div className="relative h-56 overflow-hidden">
-        <motion.div
-          animate={isHovered ? { scale: 1.05 } : { scale: 1 }}
-          transition={{ duration: 0.6 }}
-          className="absolute inset-0"
-        >
+        <div className="absolute inset-0 group-hover:scale-105 transition-transform duration-500">
           <Image
             src={project.image}
             alt={project.title}
@@ -44,17 +30,12 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
             loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
-        </motion.div>
+        </div>
 
         {/* Floating Tag */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isHovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className="absolute top-4 right-4 px-3 py-1.5 bg-emerald-500/90 backdrop-blur-sm text-white text-xs font-bold rounded-full"
-        >
+        <div className="absolute top-4 right-4 px-3 py-1.5 bg-emerald-500/90 backdrop-blur-sm text-white text-xs font-bold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
           Featured
-        </motion.div>
+        </div>
       </div>
 
       <div className="p-6 relative">
@@ -69,18 +50,13 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
             </p>
           </div>
           
-          <motion.div
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            whileTap={{ scale: 0.95 }}
+          <Link
+            href={project.link}
+            aria-label={`Open ${project.title} in new page`}
+            className="p-3 bg-slate-800/80 backdrop-blur-sm rounded-xl text-slate-400 hover:text-white hover:bg-gradient-to-r hover:from-emerald-500 hover:to-cyan-500 transition-all duration-300 shadow-lg flex items-center justify-center hover:scale-110 hover:rotate-3"
           >
-            <Link
-              href={project.link}
-              aria-label={`Open ${project.title} in new page`}
-              className="p-3 bg-slate-800/80 backdrop-blur-sm rounded-xl text-slate-400 hover:text-white hover:bg-gradient-to-r hover:from-emerald-500 hover:to-cyan-500 transition-all duration-300 shadow-lg flex items-center justify-center"
-            >
-              <ExternalLink size={20} />
-            </Link>
-          </motion.div>
+            <ExternalLink size={20} />
+          </Link>
         </div>
 
         <p className="text-slate-400 text-sm mb-6 line-clamp-3 leading-relaxed">
@@ -88,26 +64,18 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         </p>
 
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((tag, i) => (
-            <motion.span
+          {project.tags.map((tag) => (
+            <span
               key={tag}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.1 }}
               className="px-3 py-1.5 text-xs font-medium bg-gradient-to-r from-slate-800 to-slate-700 text-slate-300 rounded-lg border border-slate-600 hover:border-emerald-500/50 transition-all"
             >
               {tag}
-            </motion.span>
+            </span>
           ))}
         </div>
 
         {/* Action Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={isHovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className="flex gap-3 pt-4 border-t border-slate-700/50"
-        >
+        <div className="flex gap-3 pt-4 border-t border-slate-700/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
           <Link
             href={project.link}
             aria-label={`View details of ${project.title}`}
@@ -116,17 +84,9 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
             <Eye size={16} />
             View Details
           </Link>
-        </motion.div>
+        </div>
       </div>
-
-      {/* Shine Effect */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none"
-        style={{
-          background: `linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%)`,
-        }}
-      />
-    </motion.div>
+    </div>
   );
 }
 
@@ -142,25 +102,14 @@ export default function Projects() {
       <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px]" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full mb-6"
-          >
+        <div className="text-center mb-20 animate-fadeInUp">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full mb-6">
             <span className="relative flex h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
             </span>
             <span className="text-sm text-emerald-400 font-medium">Recent Work</span>
-          </motion.div>
+          </div>
 
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             Featured{" "}
@@ -169,12 +118,11 @@ export default function Projects() {
             </span>
           </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            A curated selection of projects that showcase my passion for creating
-            innovative and impactful solutions.
+            A collection of projects showcasing my skills in building modern, scalable applications.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" style={{ perspective: "1000px" }}>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}
