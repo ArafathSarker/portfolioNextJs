@@ -154,61 +154,50 @@ body {
 .animate-fadeInUp {
   animation: fadeInUp 0.6s ease-out forwards;
   animation-fill-mode: both;
-  will-change: opacity, transform;
 }
 
 .animate-fadeIn {
   animation: fadeIn 0.5s ease-out forwards;
   animation-fill-mode: both;
-  will-change: opacity;
 }
 
 .animate-slideInLeft {
   animation: slideInLeft 0.4s ease-out forwards;
   animation-fill-mode: both;
-  will-change: opacity, transform;
 }
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
-  will-change: transform;
 }
 
 .animate-floatReverse {
   animation: floatReverse 7s ease-in-out infinite;
-  will-change: transform;
 }
 
 .animate-progressFill {
   animation: progressFill 1s ease-out forwards;
   animation-fill-mode: both;
-  will-change: width;
 }
 
 .animate-thunderPulse {
   animation: thunderPulse 3s ease-in-out infinite;
-  will-change: opacity, transform;
 }
 
 .animate-scaleIn {
   animation: scaleIn 0.8s ease-out forwards;
   animation-fill-mode: both;
-  will-change: opacity, transform;
 }
 
 .animate-rotate {
   animation: rotate 20s linear infinite;
-  will-change: transform;
 }
 
 .animate-rotateReverse {
   animation: rotateReverse 15s linear infinite;
-  will-change: transform;
 }
 
 .animate-pulse-glow {
   animation: pulse-glow 10s ease-in-out infinite;
-  will-change: opacity, transform;
 }
 
 @keyframes slideInDown {
@@ -225,5 +214,4 @@ body {
 .animate-slideInDown {
   animation: slideInDown 0.5s ease-out forwards;
   animation-fill-mode: both;
-  will-change: opacity, transform;
 }

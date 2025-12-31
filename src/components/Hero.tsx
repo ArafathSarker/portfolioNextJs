@@ -3,30 +3,40 @@
 import { personalInfo } from "@/data";
 import { Linkedin, Sparkles, Code2, Rocket } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Hero() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Delay heavy animations until after initial paint
+    const timer = setTimeout(() => setIsLoaded(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section
       id="home"
       className="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden"
     >
-      {/* Animated Background - Pure CSS */}
+      {/* Animated Background - Optimized */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950/20">
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20" />
-        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 rounded-full blur-[120px] animate-pulse-glow" />
-        <div 
-          className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-gradient-to-tr from-blue-500/20 to-purple-500/20 rounded-full blur-[120px] animate-pulse-glow"
-          style={{ animationDelay: '2s' }}
-        />
+        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 rounded-full blur-[60px] opacity-50" />
+        <div className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-gradient-to-tr from-blue-500/10 to-purple-500/10 rounded-full blur-[60px] opacity-50" />
       </div>
 
-      {/* Floating Elements - Pure CSS */}
-      <div className="absolute top-40 left-20 text-emerald-500/20 animate-float">
-        <Code2 size={60} />
-      </div>
-      <div className="absolute bottom-40 right-20 text-cyan-500/20 animate-floatReverse">
-        <Rocket size={70} />
-      </div>
+      {/* Floating Elements - Delayed Load */}
+      {isLoaded && (
+        <>
+          <div className="absolute top-40 left-20 text-emerald-500/20 animate-float">
+            <Code2 size={60} />
+          </div>
+          <div className="absolute bottom-40 right-20 text-cyan-500/20 animate-floatReverse">
+            <Rocket size={70} />
+          </div>
+        </>
+      )}
 
       <div className="container mx-auto px-6 z-10 grid md:grid-cols-2 gap-16 items-center">
         <div>
@@ -112,9 +122,13 @@ export default function Hero() {
 
         <div className="relative flex justify-center perspective-1000 animate-scaleIn" style={{ animationDelay: '0.3s' }}>
           <div className="relative w-[320px] h-[320px] md:w-[450px] md:h-[450px]">
-            {/* Animated Rings - Pure CSS */}
-            <div className="absolute inset-0 rounded-full border-2 border-emerald-500/20 border-dashed animate-rotate" />
-            <div className="absolute inset-8 rounded-full border border-cyan-500/20 animate-rotateReverse" />
+            {/* Simplified Rings - No rotation */}
+            {isLoaded && (
+              <>
+                <div className="absolute inset-0 rounded-full border-2 border-emerald-500/20 border-dashed" />
+                <div className="absolute inset-8 rounded-full border border-cyan-500/20" />
+              </>
+            )}
             
             {/* Hexagon Container with Profile */}
             <div className="absolute inset-0 flex items-center justify-center transition-transform duration-300 hover:scale-105">
@@ -133,11 +147,6 @@ export default function Hero() {
                     <stop offset="100%" stopColor="#06b6d4" />
                   </linearGradient>
 
-                  {/* Bottom Glow Effect */}
-                  <filter id="bottomGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feDropShadow dx="0" dy="10" stdDeviation="6" floodColor="rgba(16, 185, 129, 0.5)" />
-                  </filter>
-
                   {/* Mask for the image */}
                   <mask id="hexMask">
                     <path
@@ -148,15 +157,13 @@ export default function Hero() {
                   </mask>
                 </defs>
 
-                {/* Hexagon border with gradient and glow */}
+                {/* Hexagon border with gradient - optimized */}
                 <path
                   d="M 164.041 57.718 L 195.959 113.000 A 14 14 0 0 1 195.959 127.000 L 164.041 182.282 A 14 14 0 0 1 151.917 189.282 L 88.083 189.282 A 14 14 0 0 1 75.959 182.282 L 44.041 127.000 A 14 14 0 0 1 44.041 113.000 L 75.959 57.718 A 14 14 0 0 1 88.083 50.718 L 151.917 50.718 A 14 14 0 0 1 164.041 57.718 Z"
                   fill="none"
                   stroke="url(#hexGradient)"
                   strokeWidth="3"
                   transform="rotate(30 120 120)"
-                  filter="url(#bottomGlow)"
-                  className="transition-all duration-300"
                 />
 
                 {/* Profile image clipped inside the hexagon mask */}
@@ -173,7 +180,8 @@ export default function Hero() {
                     width={201}
                     height={241}
                     priority
-                    quality={85}
+                    quality={90}
+                    fetchPriority="high"
                     style={{ objectFit: 'cover', objectPosition: 'center top' }}
                   />
                 </foreignObject>
