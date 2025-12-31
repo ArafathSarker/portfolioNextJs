@@ -17,25 +17,26 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20" />
         <motion.div
           animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 90, 0],
+            opacity: [0.5, 0.8, 0.5],
+            scale: [1, 1.1, 1],
           }}
           transition={{
-            duration: 20,
+            duration: 10,
             repeat: Infinity,
-            ease: "linear"
+            ease: "easeInOut"
           }}
           className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 rounded-full blur-[120px]"
         />
         <motion.div
           animate={{
-            scale: [1, 1.3, 1],
-            rotate: [0, -90, 0],
+            opacity: [0.5, 0.8, 0.5],
+            scale: [1, 1.1, 1],
           }}
           transition={{
-            duration: 25,
+            duration: 12,
             repeat: Infinity,
-            ease: "linear"
+            ease: "easeInOut",
+            delay: 2
           }}
           className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-gradient-to-tr from-blue-500/20 to-purple-500/20 rounded-full blur-[120px]"
         />
@@ -43,15 +44,15 @@ export default function Hero() {
 
       {/* Floating Elements */}
       <motion.div
-        animate={{ y: [0, -20, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ y: [0, -15, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-40 left-20 text-emerald-500/20"
       >
         <Code2 size={60} />
       </motion.div>
       <motion.div
-        animate={{ y: [0, 20, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ y: [0, 15, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         className="absolute bottom-40 right-20 text-cyan-500/20"
       >
         <Rocket size={70} />
@@ -69,14 +70,14 @@ export default function Hero() {
             <span className="text-sm text-emerald-400 font-medium">Available for opportunities</span>
           </motion.div>
 
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-2xl md:text-3xl font-medium text-slate-400 mb-3"
           >
             Hello, <span className="text-emerald-400">I'm</span>
-          </motion.h2>
+          </motion.div>
           
           <motion.h1
             initial={{ opacity: 0, x: -20 }}
@@ -89,14 +90,14 @@ export default function Hero() {
             </span>
           </motion.h1>
           
-          <motion.h3
+          <motion.h2
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-xl md:text-2xl font-medium mb-6 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent"
           >
             {personalInfo.title}
-          </motion.h3>
+          </motion.h2>
           
           <motion.p
             initial={{ opacity: 0 }}

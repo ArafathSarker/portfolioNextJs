@@ -196,17 +196,9 @@ export default function Skills() {
                     <stop offset="100%" stopColor="#fbbf24" />
                   </linearGradient>
                   <filter id="cloudGlow">
-                    <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
                     <feMerge>
                       <feMergeNode in="coloredBlur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
-                  <filter id="strongGlow">
-                    <feGaussianBlur stdDeviation="12" result="coloredBlur"/>
-                    <feColorMatrix in="coloredBlur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 2 0"/>
-                    <feMerge>
-                      <feMergeNode/>
                       <feMergeNode in="SourceGraphic"/>
                     </feMerge>
                   </filter>
@@ -221,11 +213,11 @@ export default function Skills() {
                       "M150,82 C142,82 132,87 127,97 C117,94 107,97 102,107 C92,107 84,115 84,125 C84,135 92,143 102,143 L198,143 C208,143 216,135 216,125 C216,117 211,110 204,107 C204,97 196,89 186,89 C181,89 176,91 173,94 C168,87 159,82 150,82 Z",
                       "M150,80 C140,80 130,85 125,95 C115,92 105,95 100,105 C90,105 82,113 82,123 C82,133 90,141 100,141 L200,141 C210,141 218,133 218,123 C218,115 213,108 206,105 C206,95 198,87 188,87 C183,87 178,89 175,92 C170,85 161,80 150,80 Z"
                     ],
-                    scale: [1, 1.03, 0.98, 1],
-                    y: [0, -3, 2, 0]
+                    scale: [1, 1.02, 0.99, 1],
+                    y: [0, -2, 1, 0]
                   }}
                   transition={{
-                    duration: 6,
+                    duration: 8,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
@@ -242,7 +234,6 @@ export default function Skills() {
                   animate={{
                     opacity: [0, 0.3, 1, 1, 0],
                     scaleY: [0.5, 0.8, 1, 1, 0.5],
-                    filter: ["url(#cloudGlow)", "url(#strongGlow)", "url(#strongGlow)", "url(#cloudGlow)"]
                   }}
                   transition={{
                     duration: 2.5,
@@ -259,7 +250,6 @@ export default function Skills() {
                   animate={{
                     opacity: [0, 0.3, 1, 1, 0],
                     scaleY: [0.5, 0.8, 1, 1, 0.5],
-                    filter: ["url(#cloudGlow)", "url(#strongGlow)", "url(#strongGlow)", "url(#cloudGlow)"]
                   }}
                   transition={{
                     duration: 2.5,
@@ -277,7 +267,6 @@ export default function Skills() {
                   animate={{
                     opacity: [0, 0.3, 1, 1, 0],
                     scaleY: [0.5, 0.8, 1, 1, 0.5],
-                    filter: ["url(#cloudGlow)", "url(#strongGlow)", "url(#strongGlow)", "url(#cloudGlow)"]
                   }}
                   transition={{
                     duration: 2.5,
@@ -300,7 +289,7 @@ export default function Skills() {
                     strokeOpacity: [0.5, 0.8, 0.6, 0.5]
                   }}
                   transition={{
-                    duration: 6,
+                    duration: 8,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}

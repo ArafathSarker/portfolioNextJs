@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { projects } from "@/data";
 import { ExternalLink, Eye } from "lucide-react";
 import Link from "next/link";
@@ -9,32 +9,6 @@ import { useState } from "react";
 
 function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
   const [isHovered, setIsHovered] = useState(false);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-    setIsHovered(false);
-  };
 
   return (
     <motion.div
@@ -42,27 +16,22 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.5, delay: index * 0.2 }}
-      onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
-      className="group relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-emerald-500/50 transition-all duration-500"
+      onMouseLeave={() => setIsHovered(false)}
+      whileHover={{ y: -10 }}
+      className="group relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-emerald-500/50 transition-all duration-500 shadow-lg hover:shadow-emerald-500/10"
     >
       {/* Animated Gradient Overlay */}
-      <motion.div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
         style={{
-          background: `radial-gradient(600px circle at ${x}px ${y}px, rgba(16, 185, 129, 0.1), transparent 40%)`,
+          background: `radial-gradient(600px circle at 50% 50%, rgba(16, 185, 129, 0.1), transparent 40%)`,
         }}
       />
 
       <div className="relative h-56 overflow-hidden">
         <motion.div
-          animate={isHovered ? { scale: 1.1 } : { scale: 1 }}
+          animate={isHovered ? { scale: 1.05 } : { scale: 1 }}
           transition={{ duration: 0.6 }}
           className="absolute inset-0"
         >
@@ -87,7 +56,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         </motion.div>
       </div>
 
-      <div className="p-6 relative" style={{ transform: "translateZ(50px)" }}>
+      <div className="p-6 relative">
         <div className="flex justify-between items-start mb-4">
           <div className="flex-1">
             <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-emerald-400 transition-colors duration-300">
@@ -149,7 +118,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       </div>
 
       {/* Shine Effect */}
-      <motion.div
+      <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none"
         style={{
           background: `linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%)`,
