@@ -91,6 +91,7 @@ function SkillCard({ skill, index }: { skill: typeof skills[0]; index: number })
           <motion.div
             initial={{ opacity: 0, y: -5 }}
             animate={isHovered ? { opacity: 1, y: 0 } : { opacity: 0, y: -5 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             className="mt-3 flex items-center justify-between"
           >
             <span className="text-xs text-slate-400 font-medium">

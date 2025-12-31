@@ -73,7 +73,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.4 }}
             className="text-2xl md:text-3xl font-medium text-slate-400 mb-3"
           >
             Hello, <span className="text-emerald-400">I'm</span>
@@ -82,7 +82,7 @@ export default function Hero() {
           <motion.h1
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             className="text-5xl md:text-7xl font-bold mb-4 tracking-tight"
           >
             <span className="bg-gradient-to-r from-white via-emerald-200 to-emerald-400 bg-clip-text text-transparent">
@@ -93,7 +93,7 @@ export default function Hero() {
           <motion.h2
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
             className="text-xl md:text-2xl font-medium mb-6 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent"
           >
             {personalInfo.title}
@@ -102,7 +102,7 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
             className="text-slate-400 text-lg leading-relaxed mb-8 max-w-lg"
           >
             {personalInfo.bio}
@@ -111,7 +111,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            transition={{ duration: 0.4, delay: 0.4 }}
             className="flex flex-wrap gap-4 mb-8"
           >
             <a
@@ -229,6 +229,7 @@ export default function Hero() {
                   transform="rotate(30 120 120)"
                   filter="url(#bottomGlow)"
                   whileHover={{ filter: "url(#bottomGlowHover)" }}
+                  transition={{ duration: 0.3 }}
                 />
 
                 {/* Profile image clipped inside the hexagon mask */}

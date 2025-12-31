@@ -50,6 +50,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isHovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
           className="absolute top-4 right-4 px-3 py-1.5 bg-emerald-500/90 backdrop-blur-sm text-white text-xs font-bold rounded-full"
         >
           Featured
@@ -104,6 +105,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={isHovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
           className="flex gap-3 pt-4 border-t border-slate-700/50"
         >
           <Link
