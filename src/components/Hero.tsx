@@ -45,14 +45,14 @@ export default function Hero() {
             <span className="text-sm text-emerald-400 font-medium">Available for opportunities</span>
           </div>
 
-          <div 
+          <div
             className="text-2xl md:text-3xl font-medium text-slate-400 mb-3 animate-slideInLeft"
             style={{ animationDelay: '0.1s' }}
           >
             Hello, <span className="text-emerald-400">I&apos;m</span>
           </div>
-          
-          <h1 
+
+          <h1
             className="text-5xl md:text-7xl font-bold mb-4 tracking-tight animate-slideInLeft"
             style={{ animationDelay: '0.2s' }}
           >
@@ -60,22 +60,22 @@ export default function Hero() {
               {personalInfo.name}
             </span>
           </h1>
-          
-          <h2 
+
+          <h2
             className="text-xl md:text-2xl font-medium mb-6 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent animate-slideInLeft"
             style={{ animationDelay: '0.3s' }}
           >
             {personalInfo.title}
           </h2>
-          
-          <p 
+
+          <p
             className="text-slate-400 text-lg leading-relaxed mb-8 max-w-lg animate-fadeIn"
             style={{ animationDelay: '0.4s' }}
           >
             {personalInfo.bio}
           </p>
-          
-          <div 
+
+          <div
             className="flex flex-wrap gap-4 mb-8 animate-fadeInUp"
             style={{ animationDelay: '0.5s' }}
           >
@@ -101,7 +101,7 @@ export default function Hero() {
             </a>
           </div>
 
-          <div 
+          <div
             className="flex items-center gap-4 animate-fadeIn"
             style={{ animationDelay: '0.6s' }}
           >
@@ -129,7 +129,7 @@ export default function Hero() {
                 <div className="absolute inset-8 rounded-full border border-cyan-500/20" />
               </>
             )}
-            
+
             {/* Hexagon Container with Profile */}
             <div className="absolute inset-0 flex items-center justify-center transition-transform duration-300 hover:scale-105">
               <svg
@@ -189,7 +189,7 @@ export default function Hero() {
             </div>
 
             {/* Floating Tech Icons - Pure CSS */}
-            <div 
+            <div
               className="absolute -top-2 left-1/2 -translate-x-1/2 animate-float"
               style={{ animationDelay: '0s' }}
             >
@@ -197,7 +197,7 @@ export default function Hero() {
                 <span className="text-2xl">⚛️</span>
               </div>
             </div>
-            <div 
+            <div
               className="absolute top-1/4 -right-4 animate-float"
               style={{ animationDelay: '1s' }}
             >
@@ -205,7 +205,7 @@ export default function Hero() {
                 <span className="text-xl">🚀</span>
               </div>
             </div>
-            <div 
+            <div
               className="absolute top-1/4 -left-4 animate-float"
               style={{ animationDelay: '2s' }}
             >
@@ -213,7 +213,7 @@ export default function Hero() {
                 <span className="text-xl">💻</span>
               </div>
             </div>
-            <div 
+            <div
               className="absolute bottom-1/4 -right-2 animate-float"
               style={{ animationDelay: '1.5s' }}
             >
@@ -221,7 +221,7 @@ export default function Hero() {
                 <span className="text-lg">🎯</span>
               </div>
             </div>
-            <div 
+            <div
               className="absolute bottom-1/4 -left-2 animate-float"
               style={{ animationDelay: '2.5s' }}
             >

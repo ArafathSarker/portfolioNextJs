@@ -43,7 +43,53 @@ export const skills = [
   { name: "jQuery", level: 70 },
 ];
 
-export const projects = [
+export interface Project {
+  title: string;
+  subtitle: string;
+  slug: string;
+  description: string;
+  fullDescription: string;
+  image: string;
+  images?: string[];
+  link: string;
+  liveDemo?: string;
+  github?: string;
+  frontendCode?: string;
+  backendCode?: string;
+  youtubeUrl?: string;
+  tags: string[];
+  technologies: string[];
+  color: string;
+}
+
+export const projects: Project[] = [
+  {
+    title: "LifeStack",
+    subtitle: "All-In-One Life Management & Productivity Platform",
+    slug: "lifestack",
+    description:
+      "LifeStack is a comprehensive personal productivity and lifestyle tracking application. Built with Next.js, React, Node.js, and MongoDB, it integrates workout monitoring, budget management, task/deadline tracking, and advanced analytics with asynchronous QStash email notifications.",
+    fullDescription:
+      "LifeStack is an all-in-one personal productivity and lifestyle tracking web application designed to help users streamline their daily habits, finances, workouts, and deadlines. Built with Next.js and modern full-stack web technologies, LifeStack consolidates essential personal management tools into a single, cohesive dashboard.\n\nKey features include tracking workouts and fitness progress, managing budgets and financial goals, and monitoring upcoming deadlines and tasks. To keep users informed without overwhelming them, LifeStack implements a robust notification preference system powered by Upstash QStash queueing, allowing users to receive personalized daily digest emails combining workout, budget, and deadline reminders asynchronously. The application also features rich real-time analytics dashboards for both users and administrators, offering insightful statistical queries and weekly activity charts across multiple time intervals (1h, 7d, 30d, and all-time).\n\nSecurity and user experience are paramount, with comprehensive authentication including secure password recovery workflows and streamlined attachment handling. Throughout development, I mastered advanced background task queueing, dynamic statistical data aggregation, and crafting highly responsive, user-centric interfaces.",
+    image: "/images/lifestack/ss1.png",
+    images: [
+      "/images/lifestack/ss1.png",
+      "/images/lifestack/ss2.png",
+      "/images/lifestack/ss3.png",
+      "/images/lifestack/ss4.png",
+      "/images/lifestack/ss5.png",
+      "/images/lifestack/ss6.png",
+      "/images/lifestack/ss7.png",
+      "/images/lifestack/ss8.png",
+    ],
+    link: "/projects/lifestack",
+    liveDemo: "https://lifestack-one.vercel.app",
+    github: "",
+    youtubeUrl: "https://youtu.be/hXS_q69RHKY?si=_-MuBq5MPbqZ6AUO", // Paste YouTube video or embed link here (e.g. https://www.youtube.com/watch?v=...)
+    tags: ["Next.js", "React", "MongoDB", "QStash", "Tailwind CSS"],
+    technologies: ["Next.js", "React", "Node.js", "MongoDB", "Upstash QStash", "Tailwind CSS", "Authentication", "Analytics Dashboard"],
+    color: "text-purple-500",
+  },
   {
     title: "MealMate",
     subtitle: "A Real-World Project Built from a Real-Life Need!",
@@ -70,6 +116,7 @@ export const projects = [
     liveDemo: "https://mealmate-kappa.vercel.app/",
     frontendCode: "https://github.com/ArafathSarker/mealmate-front-end-react",
     backendCode: "https://github.com/ArafathSarker/mealmate-back-end-express",
+    youtubeUrl: "", // Paste YouTube video or embed link here
     tags: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "Passport.js"],
     technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "Mongoose", "JWT", "Passport.js", "Vercel", "Render"],
     color: "text-emerald-500",
@@ -90,8 +137,9 @@ export const projects = [
       "/images/projects/breakTheShape/breaktheshape4.png",
     ],
     link: "/projects/break-the-shape",
-    liveDemo: "https://drive.google.com/file/d/1IvngSIET_n_yESSfT3aO0x85Ry9oISgR/view",
+    liveDemo: "",
     github: "https://github.com/ArafathSarker/break_the_shape",
+    youtubeUrl: "https://youtu.be/HF-lzKnVeWs", // Paste YouTube video or embed link here
     tags: ["C++", "SFML", "Game Dev", "OOP"],
     technologies: ["C++", "SFML", "Object-Oriented Programming", "Game Development"],
     color: "text-green-500",
@@ -114,6 +162,7 @@ export const projects = [
     ],
     link: "/projects/ticket-management",
     github: "https://github.com/ArafathSarker/management",
+    youtubeUrl: "", // Paste YouTube video or embed link here
     tags: ["C#", "Console App", "OOP"],
     technologies: ["C#", "Object-Oriented Programming", "Console Application"],
     color: "text-emerald-500",
@@ -145,6 +194,7 @@ export const projects = [
     link: "/projects/drivex",
     liveDemo: "https://drivex.ct.ws/",
     github: "https://github.com/ArafathSarker/DriveX-Project",
+    youtubeUrl: "", // Paste YouTube video or embed link here
     tags: ["PHP", "MySQL", "Tailwind CSS", "Admin Panel"],
     technologies: ["PHP", "MySQL", "SQL", "Tailwind CSS", "Session Handling", "Authentication"],
     color: "text-cyan-500",
@@ -173,6 +223,7 @@ export const projects = [
     link: "/projects/evahandcraft",
     liveDemo: "https://evahandcraft.gt.tc/",
     github: "https://github.com/ArafathSarker/handCraftProject",
+    youtubeUrl: "", // Paste YouTube video or embed link here
     tags: ["PHP", "MySQL", "E-Commerce", "Tailwind CSS"],
     technologies: ["PHP", "MySQL", "SQL", "Tailwind CSS", "Authentication", "Admin Panel", "E-Commerce"],
     color: "text-pink-500",
@@ -205,6 +256,7 @@ export const projects = [
     link: "/projects/roomfinder",
     liveDemo: "https://roomfinder.ct.ws/",
     github: "https://github.com/ArafathSarker/UniversityPhpProject",
+    youtubeUrl: "", // Paste YouTube video or embed link here
     tags: ["PHP", "MySQL", "Rental Platform", "Tailwind CSS"],
     technologies: ["PHP", "MySQL", "SQL", "Tailwind CSS", "Authentication", "Admin Panel", "Session Management"],
     color: "text-blue-500",

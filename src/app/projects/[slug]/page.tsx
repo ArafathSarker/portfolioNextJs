@@ -7,6 +7,16 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { useState, use } from "react";
 
+function getYouTubeEmbedUrl(url?: string): string | null {
+  if (!url || url.trim() === "") return null;
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+  if (match && match[2].length === 11) {
+    return `https://www.youtube.com/embed/${match[2]}`;
+  }
+  return url.includes("embed") ? url : null;
+}
+
 export default function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
   const project = projects.find((p) => p.slug === slug);
@@ -20,7 +30,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
     <main className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900">
       {/* Background */}
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10" />
-      
+
       {/* Gradient Orbs */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-[120px]" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px]" />
@@ -55,13 +65,23 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
             {project.title}
           </h1>
-          
+
           <p className="text-xl md:text-2xl text-slate-400 mb-8 max-w-4xl">
             {project.subtitle}
           </p>
 
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-4">
+            {project.youtubeUrl && getYouTubeEmbedUrl(project.youtubeUrl) && (
+              <a
+                href="#video-demo"
+                aria-label={`Watch video demonstration of ${project.title}`}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-600 to-rose-600 rounded-xl font-semibold text-white shadow-lg shadow-red-500/25 hover:shadow-red-500/40 transition-all duration-300 hover:scale-105 active:scale-95"
+              >
+                <Play className="w-5 h-5 fill-current" />
+                Watch Video
+              </a>
+            )}
             {project.liveDemo && (
               <a
                 href={project.liveDemo}
@@ -74,7 +94,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
                 Live Demo
               </a>
             )}
-            
+
             {project.github && (
               <a
                 href={project.github}
@@ -132,6 +152,28 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
                 {project.fullDescription}
               </p>
             </div>
+
+            {/* Video Demo Section */}
+            {project.youtubeUrl && getYouTubeEmbedUrl(project.youtubeUrl) && (
+              <div id="video-demo" className="scroll-mt-28 bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 border border-slate-700/50 animate-fadeInUp" style={{ animationDelay: '0.25s' }}>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-lg">
+                    <Play className="w-6 h-6 text-red-400 fill-current" />
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-white">Video Demonstration</h2>
+                </div>
+
+                <div className="relative w-full aspect-video rounded-xl overflow-hidden border-2 border-slate-700 hover:border-red-500/50 transition-all duration-300 shadow-2xl bg-slate-950">
+                  <iframe
+                    src={getYouTubeEmbedUrl(project.youtubeUrl)!}
+                    title={`${project.title} Video Demonstration`}
+                    className="absolute top-0 left-0 w-full h-full border-0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+            )}
 
             {/* Image Gallery */}
             {project.images && project.images.length > 0 && (
@@ -199,6 +241,18 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
                 <div className="mt-8 pt-8 border-t border-slate-700">
                   <h3 className="text-lg font-bold text-white mb-4">Quick Links</h3>
                   <div className="space-y-3">
+                    {project.youtubeUrl && getYouTubeEmbedUrl(project.youtubeUrl) && (
+                      <a
+                        href="#video-demo"
+                        className="flex items-center gap-3 p-3 bg-slate-800/50 hover:bg-slate-800 rounded-lg transition-all duration-300 group"
+                      >
+                        <Play className="w-5 h-5 text-red-400 fill-current" />
+                        <span className="text-slate-300 group-hover:text-red-400 transition-colors duration-300">
+                          Video Demo
+                        </span>
+                        <ExternalLink className="w-4 h-4 text-slate-500 ml-auto" />
+                      </a>
+                    )}
                     {project.liveDemo && (
                       <a
                         href={project.liveDemo}
@@ -213,7 +267,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
                         <ExternalLink className="w-4 h-4 text-slate-500 ml-auto" />
                       </a>
                     )}
-                    
+
                     {project.github && (
                       <a
                         href={project.github}
@@ -282,7 +336,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
             >
               <X className="w-6 h-6 text-white" />
             </button>
-            
+
             <div className="bg-slate-900 rounded-2xl overflow-hidden border border-slate-700 shadow-2xl">
               <div className="relative w-full" style={{ minHeight: '400px' }}>
                 <Image

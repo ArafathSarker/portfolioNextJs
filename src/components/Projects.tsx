@@ -49,7 +49,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
               {project.subtitle}
             </p>
           </div>
-          
+
           <Link
             href={project.link}
             aria-label={`Open ${project.title} in new page`}
@@ -96,7 +96,7 @@ export default function Projects() {
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10" />
-      
+
       {/* Gradient Orbs */}
       <div className="absolute top-1/4 -left-48 w-96 h-96 bg-emerald-500/10 rounded-full blur-[120px]" />
       <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px]" />
